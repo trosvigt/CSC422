@@ -4,11 +4,15 @@ package edu.csp.petdatabase;
 // 
 public class Table {
     public static void printTable(Pet[] pets) {
+        System.out.println();
+        
         printHeader();
         
         printBody(pets);
         
         printFooter(pets);
+        
+        System.out.println();
     }
     
     // This method prints the formatted table header
@@ -32,6 +36,6 @@ public class Table {
     // This method prints the formatted table footer
     private static void printFooter(Pet[] pets) {
         System.out.println("+-------------------------+");
-        System.out.printf("%s rows in set.", pets.length);
+        System.out.printf("%s rows in set.\n", pets.length);
     }
 }
