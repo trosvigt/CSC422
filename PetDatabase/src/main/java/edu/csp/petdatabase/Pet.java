@@ -9,6 +9,10 @@ public class Pet {
         this.age = age;
     }
     
+    
+    // *******
+    // Getters
+    // *******
     public String getName() {
         return this.name;
     }
@@ -17,6 +21,10 @@ public class Pet {
         return this.age;
     }
     
+    
+    // *******
+    // Setters
+    // *******
     public void setName(String name) {
         this.name = name;
     }

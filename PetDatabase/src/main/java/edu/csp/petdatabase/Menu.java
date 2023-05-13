@@ -1,5 +1,8 @@
 package edu.csp.petdatabase;
 
+/*
+This class displays menu options for the user
+*/
 public class Menu {
     public static void printMenu() {
         System.out.println("What would you like to do?");
