@@ -1,6 +1,7 @@
 package edu.csp.petdatabase;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /*
 This class provides methods to interact with an ArrayList
@@ -10,12 +11,20 @@ public class PetList {
     private ArrayList<Pet> pets;
     
     public PetList() {
-        //this.pets = generateSampleData();
         this.pets = new ArrayList();
     }
     
+    // This method will return the values
+    public ArrayList<Pet> getValues() {
+        return this.pets;
+    }
+    
     // This method will add a pet to the list
-    public void add(Pet pet) {
+    public void add(String name, int age) {
+        // Create new pet instance
+        Pet pet = new Pet(this.pets.size(), name, age);
+        
+        // Add pet
         this.pets.add(pet);
     }
     
@@ -24,31 +33,19 @@ public class PetList {
         return this.pets.get(index);
     }
     
+    public ArrayList<Pet> searchName(String search) {
+        ArrayList<Pet> tempPets = new ArrayList();
+        for (Pet pet : this.pets) {
+            if (search.equalsIgnoreCase(pet.getName())) {
+                tempPets.add(pet);
+            }
+        }
+        
+        return tempPets;
+    }
+    
     // This method allows us to retrieve the size
     public int size() {
         return this.pets.size();
-    }
-    
-    // This method populates the array list with some
-    // sample data
-    private static ArrayList<Pet> generateSampleData() {
-        // Initialize empty ArrayList to hold pets
-        ArrayList<Pet> pets = new ArrayList<Pet>();
-        
-        // Create pet objects
-        Pet pet1 = new Pet("Kitty", 8);
-        Pet pet2 = new Pet("Bruno", 7);
-        Pet pet3 = new Pet("Boomer", 8);
-        Pet pet4 = new Pet("Boomer", 3);
-        Pet pet5 = new Pet("Fiesty", 3);
-        
-        // Populate pets list
-        pets.add(pet1);
-        pets.add(pet2);
-        pets.add(pet3);
-        pets.add(pet4);
-        pets.add(pet5);
-        
-        return pets;
     }
 }

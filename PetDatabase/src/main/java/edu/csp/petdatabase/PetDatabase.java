@@ -1,5 +1,6 @@
 package edu.csp.petdatabase;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PetDatabase {
@@ -26,7 +27,7 @@ public class PetDatabase {
             switch(choice) {
                 case "1": {
                     // View all pets
-                    Table.printTable(pets);
+                    Table.printTable(pets.getValues());
                     
                     break;
                 }
@@ -49,9 +50,8 @@ public class PetDatabase {
                         name = values[0];
                         age = Integer.parseInt(values[1]);
                         
-                        // Create new Pet instance and add to list
-                        pet = new Pet(name, age);
-                        pets.add(pet);
+                        // Add to the list
+                        pets.add(name, age);
                     } while(!choice.equals("done"));
                     
                     System.out.println();
@@ -67,10 +67,20 @@ public class PetDatabase {
                     break;
                 }
                 case "5": {
-                    System.out.println("You chose 5");
+                    // Search pets by name
+                    
+                    // Prompt user and save input
+                    System.out.print("Enter a name to search: ");
+                    String search = input.nextLine();
+                    
+                    ArrayList<Pet> results = pets.searchName(search);
+                    
+                    Table.printTable(results);
+                    
                     break;
                 }
                 case "6": {
+                    // Search pets by age
                     System.out.println("You chose 6");
                     break;
                 }
@@ -79,6 +89,8 @@ public class PetDatabase {
                     break;
                 } default: {
                     System.out.println("Invalid input. Please try again...");
+                    System.out.println();
+                    
                     break;
                 }
             }
