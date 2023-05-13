@@ -14,7 +14,6 @@ public class PetDatabase {
         String choice = "";
         String name;
         int age;
-        Pet pet;
         
         // Main loop that will run until the user selects 7
         do {
@@ -27,7 +26,10 @@ public class PetDatabase {
             switch(choice) {
                 case "1": {
                     // View all pets
-                    Table.printTable(pets.getValues());
+                    
+                    ArrayList<Pet> test = pets.getValues();
+                    
+                    Table.printTable(test);
                     
                     break;
                 }
@@ -73,15 +75,27 @@ public class PetDatabase {
                     System.out.print("Enter a name to search: ");
                     String search = input.nextLine();
                     
+                    // Search by name
                     ArrayList<Pet> results = pets.searchName(search);
                     
+                    // Display results
                     Table.printTable(results);
                     
                     break;
                 }
                 case "6": {
                     // Search pets by age
-                    System.out.println("You chose 6");
+                    
+                    // Prompt user and save input
+                    System.out.print("Enter an age to search: ");
+                    String search = input.nextLine();
+                    
+                    // Search by age
+                    ArrayList<Pet> results = pets.searchAge(search);
+                    
+                    // Display results
+                    Table.printTable(results);
+                    
                     break;
                 }
                 case "7": {

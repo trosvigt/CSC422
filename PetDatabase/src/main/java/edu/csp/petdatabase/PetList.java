@@ -1,7 +1,6 @@
 package edu.csp.petdatabase;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /*
 This class provides methods to interact with an ArrayList
@@ -16,7 +15,10 @@ public class PetList {
     
     // This method will return the values
     public ArrayList<Pet> getValues() {
-        return this.pets;
+        // Create a copy so user can't modify original
+        ArrayList<Pet> copy = (ArrayList)this.pets.clone();
+        
+        return copy;
     }
     
     // This method will add a pet to the list
@@ -33,10 +35,32 @@ public class PetList {
         return this.pets.get(index);
     }
     
+    // This method will return a list of results matching name
     public ArrayList<Pet> searchName(String search) {
+        // Create temp list for results
         ArrayList<Pet> tempPets = new ArrayList();
+        
+        // Loop over pets and save matching names
         for (Pet pet : this.pets) {
             if (search.equalsIgnoreCase(pet.getName())) {
+                tempPets.add(pet);
+            }
+        }
+        
+        return tempPets;
+    }
+    
+    // This method will return a list of results matching age
+    public ArrayList<Pet> searchAge(String search) {
+        // Convert age to int
+        int age = Integer.parseInt(search);
+        
+        // Create temp list for results
+        ArrayList<Pet> tempPets = new ArrayList();
+        
+        // Loop over pets and save matching ages
+        for (Pet pet : this.pets) {
+            if (age == pet.getAge()) {
                 tempPets.add(pet);
             }
         }

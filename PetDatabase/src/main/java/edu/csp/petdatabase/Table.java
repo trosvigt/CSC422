@@ -7,6 +7,7 @@ This class displays a list of Pet objects in a
 nicely formatted table
 */
 public class Table {
+    // This method will display a complete table
     public static void printTable(List<Pet> pets) {
         System.out.println();
         

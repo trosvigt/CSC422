@@ -1,5 +1,8 @@
 package edu.csp.petdatabase;
 
+/*
+This class models a Pet
+*/
 public class Pet {
     private int id;
     private String name;
