@@ -63,21 +63,35 @@ public class PetDatabase {
                     } while(!choice.equals("done"));
                     
                     // Display pet count added
-                    System.out.printf("%s pet(s) added\n", count);
+                    System.out.printf("%s pet(s) added\n\n", count);
                     
                     // Reset count
                     count = 0;
                     
-                    System.out.println();
-                    
                     break;
                 }
                 case "3": {
+                    // Update an existing pet
+                    
                     System.out.println("You chose 3");
+                    
                     break;
+                    
                 }
                 case "4": {
-                    System.out.println("You chose 4");
+                    // Remove an existing pet
+                    
+                    // Prompt user and save input
+                    System.out.print("Enter the pet ID to remove: ");
+                    choice = input.nextLine();
+                    
+                    // Remove pet and save return value to display
+                    Pet removed = pets.remove(Integer.parseInt(choice));
+                    
+                    System.out.printf("%s %s has been removed\n\n"
+                            , removed.getName()
+                            , removed.getAge());
+                    
                     break;
                 }
                 case "5": {
@@ -85,9 +99,9 @@ public class PetDatabase {
                     
                     // Prompt user and save input
                     System.out.print("Enter a name to search: ");
-                    String search = input.nextLine();
+                    choice = input.nextLine();
                                         
-                    Table.searchName(search, pets);
+                    Table.searchName(choice, pets);
                     
                     break;
                 }
@@ -96,10 +110,10 @@ public class PetDatabase {
                     
                     // Prompt user and save input
                     System.out.print("Enter an age to search: ");
-                    String search = input.nextLine();
+                    choice = input.nextLine();
                     
                     // Display results
-                    Table.searchAge(search, pets);
+                    Table.searchAge(choice, pets);
                     
                     break;
                 }
@@ -108,9 +122,8 @@ public class PetDatabase {
                     
                     break;
                 } default: {
-                    System.out.println("Invalid input. Please try again...");
-                    System.out.println();
-                    
+                    System.out.println("Invalid input. Please try again...\n");
+
                     break;
                 }
             }
