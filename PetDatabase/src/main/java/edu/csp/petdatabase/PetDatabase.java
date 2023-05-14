@@ -9,12 +9,13 @@ public class PetDatabase {
         Scanner input = new Scanner(System.in);
         
         // Populate sample data
-        PetList pets = new PetList();
+        ArrayList<Pet> pets = new ArrayList();
         
         String choice = "";
         String name;
         int age;
         int count = 0;
+        Pet pet;
         
         // Main loop that will run until the user selects 7
         do {
@@ -28,9 +29,7 @@ public class PetDatabase {
                 case "1": {
                     // View all pets
                     
-                    ArrayList<Pet> test = pets.getValues();
-                    
-                    Table.printTable(test);
+                    Table.printTable(pets);
                     
                     break;
                 }
@@ -53,8 +52,11 @@ public class PetDatabase {
                         name = values[0];
                         age = Integer.parseInt(values[1]);
                         
+                        // Create Pet object
+                        pet = new Pet(name, age);
+                        
                         // Add to the list
-                        pets.add(name, age);
+                        pets.add(pet);
                         
                         // Keeps track of number of pets added
                         count++;
@@ -84,12 +86,8 @@ public class PetDatabase {
                     // Prompt user and save input
                     System.out.print("Enter a name to search: ");
                     String search = input.nextLine();
-                    
-                    // Search by name
-                    ArrayList<Pet> results = pets.searchName(search);
-                    
-                    // Display results
-                    Table.printTable(results);
+                                        
+                    Table.searchName(search, pets);
                     
                     break;
                 }
@@ -100,16 +98,14 @@ public class PetDatabase {
                     System.out.print("Enter an age to search: ");
                     String search = input.nextLine();
                     
-                    // Search by age
-                    ArrayList<Pet> results = pets.searchAge(search);
-                    
                     // Display results
-                    Table.printTable(results);
+                    Table.searchAge(search, pets);
                     
                     break;
                 }
                 case "7": {
                     System.out.println("Goodbye!");
+                    
                     break;
                 } default: {
                     System.out.println("Invalid input. Please try again...");

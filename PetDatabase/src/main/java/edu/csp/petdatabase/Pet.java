@@ -4,12 +4,10 @@ package edu.csp.petdatabase;
 This class models a Pet
 */
 public class Pet {
-    private int id;
     private String name;
     private int age;
     
-    public Pet(int id, String name, int age) {
-        this.id = id;
+    public Pet(String name, int age) {
         this.name = name;
         this.age = age;
     }
@@ -18,10 +16,6 @@ public class Pet {
     // *******
     // Getters
     // *******
-    public int getId() {
-        return this.id;
-    }
-    
     public String getName() {
         return this.name;
     }
