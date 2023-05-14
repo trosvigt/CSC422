@@ -14,6 +14,7 @@ public class PetDatabase {
         String choice = "";
         String name;
         int age;
+        int count = 0;
         
         // Main loop that will run until the user selects 7
         do {
@@ -54,7 +55,16 @@ public class PetDatabase {
                         
                         // Add to the list
                         pets.add(name, age);
+                        
+                        // Keeps track of number of pets added
+                        count++;
                     } while(!choice.equals("done"));
+                    
+                    // Display pet count added
+                    System.out.printf("%s pet(s) added\n", count);
+                    
+                    // Reset count
+                    count = 0;
                     
                     System.out.println();
                     
