@@ -16,6 +16,8 @@ public class PetDatabase {
         int age;
         int count = 0;
         Pet pet;
+        Pet replaced;
+        int index;
         
         // Main loop that will run until the user selects 7
         do {
@@ -73,7 +75,29 @@ public class PetDatabase {
                 case "3": {
                     // Update an existing pet
                     
-                    System.out.println("You chose 3");
+                    // Prompt user and save input
+                    System.out.print("Enter the pet ID you wish to update: ");
+                    index = Integer.parseInt(input.nextLine());
+                    
+                    System.out.print("Enter new name and new age: ");
+                    choice = input.nextLine();
+                    
+                    // Extract values
+                    String[] values = choice.split(" ");
+                    name = values[0];
+                    age = Integer.parseInt(values[1]);
+                    
+                    // Create new pet
+                    pet = new Pet(name, age);
+                    
+                    // Replace existing pet
+                    replaced = pets.set(index, pet);
+                    
+                    System.out.printf("%s %s changed to %s %s\n\n"
+                            , replaced.getName()
+                            , replaced.getAge()
+                            , pet.getName()
+                            , pet.getAge());
                     
                     break;
                     

@@ -99,13 +99,13 @@ public class Table {
     // This method prints the formatted table footer
     private static void printFooter(List<Pet> pets) {
         System.out.println("+-------------------------+");
-        System.out.printf("%s rows in set.\n", pets.size());
+        System.out.printf("%s row(s) in set.\n", pets.size());
     }
     
     // This method prints the formatted table footer
     private static void printFooter(int count) {
         System.out.println("+-------------------------+");
-        System.out.printf("%s rows in set.\n", count);
+        System.out.printf("%s row(s) in set.\n", count);
     }
     
     // This method prints a single table row
