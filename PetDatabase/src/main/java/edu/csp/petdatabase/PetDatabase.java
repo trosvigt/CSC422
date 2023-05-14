@@ -152,5 +152,7 @@ public class PetDatabase {
                 }
             }
         } while (!choice.equals("7"));
+        
+        input.close();
     }
 }
