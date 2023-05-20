@@ -19,6 +19,9 @@ public class PetDatabase {
         Pet replaced;
         int index;
         
+        // Display program title
+        System.out.println("Pet Database Program\n");
+        
         // Main loop that will run until the user selects 7
         do {
             // Display menu items
@@ -141,7 +144,10 @@ public class PetDatabase {
                     
                     break;
                 }
-                case "7": {
+                case "7": {                    
+                    // Save pets
+                    Database.save(pets);
+                    
                     System.out.println("Goodbye!");
                     
                     break;
