@@ -8,8 +8,8 @@ public class PetDatabase {
         // Create Scanner object
         Scanner input = new Scanner(System.in);
         
-        // Populate sample data
-        ArrayList<Pet> pets = new ArrayList();
+        // Get pets
+        ArrayList<Pet> pets = Database.load();
         
         String choice = "";
         String name;
