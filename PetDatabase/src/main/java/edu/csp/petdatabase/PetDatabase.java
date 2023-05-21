@@ -52,8 +52,19 @@ public class PetDatabase {
                             continue;
                         }
                         
-                        // Extract values
                         String[] values = choice.split(" ");
+                        
+                        // Ensure user only provides two values
+                        if (values.length != 2) {
+                            System.out.println(
+                                String.format("Error: %s is not a valid input",
+                                    choice)
+                            );
+                            
+                            continue;
+                        }
+                        
+                        // Extract values
                         name = values[0];
                         age = Integer.parseInt(values[1]);
                         
