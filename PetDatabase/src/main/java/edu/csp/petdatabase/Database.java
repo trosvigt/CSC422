@@ -91,19 +91,14 @@ public class Database {
     public boolean add(Pet pet) {
         String message;
         
-        // Do not allow more than five pets to be added
-        if (this.pets.size() >= 5) {
-            System.out.println("Error: Database is full\n");
-
-            // Exit loop
-           return false;
-        }
-        
         // Age must be between 1 and 20
         if (pet.getAge() < 1 || pet.getAge() > 20) {
             // Create and display error message
-            message = String.format("Error: %s is not a valid age"); 
+            message = String.format("Error: %s is not a valid age",
+                    pet.getAge()); 
             System.out.println(message);
+            
+            return false;
         }
         
         // Add the pet
@@ -145,6 +140,11 @@ public class Database {
             Pet removed = this.pets.remove(index);
         
         return removed;
+    }
+    
+    // This method will return how many Pets are in the database
+    public int size() {
+        return this.pets.size();
     }
     
     // This method searches a List and displays results in a table

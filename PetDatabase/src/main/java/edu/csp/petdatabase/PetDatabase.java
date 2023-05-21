@@ -52,6 +52,14 @@ public class PetDatabase {
                             continue;
                         }
                         
+                        // Do not allow more than five pets to be added
+                        if (pets.size() >= 5) {
+                            System.out.println("Error: Database is full\n");
+                            
+                            // Exit loop
+                            break;
+                        }
+                        
                         String[] values = choice.split(" ");
                         
                         // Ensure user only provides two values
@@ -73,7 +81,7 @@ public class PetDatabase {
                         
                         // Add to the list
                         if (!pets.add(pet)) {
-                            break;
+                            continue;
                         }
                         
                         // Keeps track of number of pets added
@@ -165,7 +173,7 @@ public class PetDatabase {
                     // Save pets
                     pets.save();
                     
-                    System.out.println("Goodbye!");
+                    System.out.println("\nGoodbye!");
                     
                     break;
                 } default: {

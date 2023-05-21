@@ -1,5 +1,0 @@
-Zeke,11
-Mavis,4
-Ringo,7
-Zeke,7
-Luna,4
