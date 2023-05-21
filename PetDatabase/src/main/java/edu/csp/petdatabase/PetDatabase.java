@@ -1,6 +1,5 @@
 package edu.csp.petdatabase;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PetDatabase {
@@ -9,9 +8,10 @@ public class PetDatabase {
         Scanner input = new Scanner(System.in);
         
         // Get pets
-        ArrayList<Pet> pets = Database.load();
+        Database pets = new Database();
         
         String choice = "";
+        String menuChoice = "";
         String name;
         int age;
         int count = 0;
@@ -28,13 +28,13 @@ public class PetDatabase {
             Menu.printMenu();
 
             // Grab choice from the user
-            choice = input.nextLine();
+            menuChoice = input.nextLine();
             
-            switch(choice) {
+            switch(menuChoice) {
                 case "1": {
                     // View all pets
                     
-                    Table.printTable(pets);
+                    pets.display();
                     
                     break;
                 }
@@ -61,7 +61,9 @@ public class PetDatabase {
                         pet = new Pet(name, age);
                         
                         // Add to the list
-                        pets.add(pet);
+                        if (!pets.add(pet)) {
+                            break;
+                        }
                         
                         // Keeps track of number of pets added
                         count++;
@@ -128,7 +130,7 @@ public class PetDatabase {
                     System.out.print("Enter a name to search: ");
                     choice = input.nextLine();
                                         
-                    Table.searchName(choice, pets);
+                    pets.searchName(choice);
                     
                     break;
                 }
@@ -140,13 +142,13 @@ public class PetDatabase {
                     choice = input.nextLine();
                     
                     // Display results
-                    Table.searchAge(choice, pets);
+                    pets.searchAge(choice);
                     
                     break;
                 }
                 case "7": {                    
                     // Save pets
-                    Database.save(pets);
+                    pets.save();
                     
                     System.out.println("Goodbye!");
                     
@@ -157,7 +159,7 @@ public class PetDatabase {
                     break;
                 }
             }
-        } while (!choice.equals("7"));
+        } while (!menuChoice.equals("7"));
         
         input.close();
     }

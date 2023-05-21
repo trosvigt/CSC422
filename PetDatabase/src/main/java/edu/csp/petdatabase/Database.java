@@ -5,18 +5,26 @@ import java.io.*;
 import java.util.Scanner;
 
 /*
-This class saves and loads pets to/from pets.txt
+This class provides basic database functionality
+for the Pets Database program
 */
 public class Database {
+    private ArrayList<Pet> pets = new ArrayList();
+    
+    public Database() {
+        this.pets = Database.load();
+    }
+    
     // This method will save pets to pets.txt
-    public static boolean save(ArrayList<Pet> pets) {
+    public boolean save() {
         try {
             // Create file if it does not already exist
             File file = new File("pets.txt");
+            file.createNewFile();
             
             // Loop through and write pets to the file
             FileWriter output = new FileWriter("pets.txt");
-            for (Pet pet : pets) {
+            for (Pet pet : this.pets) {
                 output.write(pet.toString());
             }
             
@@ -30,7 +38,7 @@ public class Database {
     }
     
     // This method will read in pets from pets.txt
-    public static ArrayList<Pet> load() {
+    private static ArrayList<Pet> load() {
         ArrayList<Pet> pets = new ArrayList();
         Pet pet;
         String name;
@@ -72,5 +80,108 @@ public class Database {
         }
         
         return pets;
+    }
+    
+    // This method will display pets
+    public void display() {
+        Table.printTable(pets);
+    }
+    
+    // This method will add pets to the database
+    public boolean add(Pet pet) {
+        String message;
+        
+        // Do not allow more than five pets to be added
+        if (this.pets.size() >= 5) {
+            System.out.println("Error: Database is full\n");
+
+            // Exit loop
+           return false;
+        }
+        
+        // Age must be between 1 and 20
+        if (pet.getAge() < 1 || pet.getAge() > 20) {
+            // Create and display error message
+            message = String.format("Error: %s is not a valid age"); 
+            System.out.println(message);
+        }
+        
+        // Add the pet
+        this.pets.add(pet);
+        
+        return true;
+    }
+    
+    // This method will let you replace a Pet
+    public Pet set(int index, Pet pet) {
+        // Set pet and save old
+        Pet replaced = this.pets.set(index, pet);
+        
+        return replaced;
+    }
+    
+    // This method will remove a Pet from the database
+    public Pet remove(int index) {
+        Pet removed = this.pets.remove(index);
+        
+        return removed;
+    }
+    
+    // This method searches a List and displays results in a table
+    public void searchName(String search) {
+        String name;
+        int age;
+        int count = 0;
+        
+        System.out.println();
+        
+        Table.printHeader();
+
+        // Create line for matching names
+        for (int i = 0; i < this.pets.size(); i++) {
+            // Save current name and age for readability
+            name = this.pets.get(i).getName();
+            age = this.pets.get(i).getAge();
+            
+            // Compare search and current name
+            if (search.equalsIgnoreCase(name)) {
+                Table.printLine(i, name, age);
+                
+                count++;
+            }
+        }
+        
+        Table.printFooter(count);
+        
+        System.out.println();
+    }
+    
+    // This method searches a list and displays results in a table
+    public void searchAge(String search) {
+        String name;
+        int age;
+        int count = 0;
+        
+        System.out.println();
+        
+        Table.printHeader();
+
+        // Create line for matching ages
+        for (int i = 0; i < this.pets.size(); i++) {
+            // Save current name and age for readability
+            name = this.pets.get(i).getName();
+            age = this.pets.get(i).getAge();
+            
+            // Compare search and current age
+            if (Integer.parseInt(search) == age) {
+                Table.printLine(i, name, age);
+                
+                count++;
+            }
+        }
+        
+        Table.printFooter(count);
+        
+        System.out.println();
     }
 }
