@@ -109,11 +109,13 @@ public class PetDatabase {
                     // Replace existing pet
                     replaced = pets.set(index, pet);
                     
-                    System.out.printf("%s %s changed to %s %s\n\n"
+                    if (replaced != null) {
+                        System.out.printf("%s %s changed to %s %s\n\n"
                             , replaced.getName()
                             , replaced.getAge()
                             , pet.getName()
                             , pet.getAge());
+                    }
                     
                     break;
                     
@@ -128,9 +130,11 @@ public class PetDatabase {
                     // Remove pet and save return value to display
                     Pet removed = pets.remove(Integer.parseInt(choice));
                     
-                    System.out.printf("%s %s has been removed\n\n"
+                    if (removed != null) {
+                        System.out.printf("%s %s has been removed\n\n"
                             , removed.getName()
                             , removed.getAge());
+                    }
                     
                     break;
                 }

@@ -114,6 +114,16 @@ public class Database {
     
     // This method will let you replace a Pet
     public Pet set(int index, Pet pet) {
+        // Do not allow index out of range
+        if (index >= this.pets.size()) {
+            System.out.println(
+                String.format("Error: ID %s does not exist\n",
+                    index)
+            );
+            
+            return null;
+        }
+        
         // Set pet and save old
         Pet replaced = this.pets.set(index, pet);
         
@@ -122,7 +132,17 @@ public class Database {
     
     // This method will remove a Pet from the database
     public Pet remove(int index) {
-        Pet removed = this.pets.remove(index);
+        // Do not allow index out of range
+            if (index >= this.pets.size()) {
+                System.out.println(
+                    String.format("Error: ID %s does not exist\n",
+                        index)
+                );
+                
+                return null;
+            }
+
+            Pet removed = this.pets.remove(index);
         
         return removed;
     }
